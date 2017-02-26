@@ -1,8 +1,14 @@
-// submitted by Jennifer Wartick cs342 on Feb.14th, 2017 ~4:30pm
+/**
+ * created by Jennifer Wartick (jwartick@gmail.com)
+ * originally submitted by Jennifer Wartick cs342 on Feb.14th, 2017
+ * updated for new submission on 2/26/17
+ */
+
+
+// originally submitted by Jennifer Wartick cs342 on Feb.14th, 2017 ~4:30pm
 
 import java.util.Scanner;
 import java.io.*;
-import java.util.jar.Pack200;
 
 /**
  * GDList is a generic doubly linked list.
@@ -604,12 +610,20 @@ public class GDList<E> implements Cloneable
         System.out.println();
     }
  // this method is specific to CourseRecords
+
+    /**
+     * This method searches for a node containing a CourseRecord object matching the user supplied course name
+     * @param s
+     *      course name
+     * @return
+     *      CourseRecord object containing the specified course name
+     */
     public CourseRecord findData(String s)
     {
         if(head != null)
         {
             GNode current = head;
-            CourseRecord courses = (CourseRecord)current.data;
+            CourseRecord courses = (CourseRecord)current.data; // allows use of CourseRecord methods etc
             while (current != null)
             {
                 if(courses.getName().equals(s))
@@ -632,23 +646,42 @@ public class GDList<E> implements Cloneable
         }
     }
 
+    /**
+     * This method is for nodes containing CourseRecord objects
+     * Prints the courserecord objects containined in each node within the linked list
+     * and then calculates a cumulative GPA for all courses
+     *
+     * @note
+     *      calculation per BU's GPA site:
+     *      Sum of (course credit * grade point equivalence) per course divided by total number of credits taken
+     */
     public void prettyPrint()
     {
         if (head != null)
         {
             GNode current = head;
             CourseRecord courses = (CourseRecord)current.data;
+            double finalpoints = 0;
+            int finalcredits = 0;
 
             for (int i = 0; i<size; i++)
             {
+                finalcredits += courses.getCredits();
+                finalpoints += courses.getGPA() * courses.getCredits();
+
                 courses.displayCourse();
                 current = current.getNext();
-                if (current!=null)
+                if (current!=null) // only set new course if next value is not null
                 {
                     courses = (CourseRecord)current.data;
                 }
                 System.out.println();
             }
+            String finalgrade = String.format("%.2f", (finalpoints/finalcredits));
+            System.out.println("---------------");
+            System.out.println("Total GPA: " + finalgrade);
+            System.out.println("---------------");
+
         }
     }
 

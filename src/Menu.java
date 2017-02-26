@@ -1,3 +1,7 @@
+/**
+ * created by Jennifer Wartick (jwartick@gmail.com)
+ * submitted on 2/26/17
+ */
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,6 +50,17 @@ public class Menu
         return menu_choice;
     }
 
+    /**
+     * Checks if given id is contained in given arraylist
+     * TODO
+     *      this method (?this entire class) should probably be nested within the main method
+     * @param a
+     *      Arraylist to be searched
+     * @param id
+     *      id to search for
+     * @return
+     *      true/false depending on whether the specified ID can be found within the provided arraylist
+     */
     public boolean isListed(ArrayList<StudentObj> a, String id) // accepts student registry
     {
         boolean flag = false;

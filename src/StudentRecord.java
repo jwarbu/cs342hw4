@@ -1,8 +1,12 @@
+/**
+ * created by Jennifer Wartick (jwartick@gmail.com)
+ * submitted on 2/26/17
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.jar.Pack200;
 
-public class Main {
+public class StudentRecord {
 
     public static void main(String[] args) throws Exception
     {
@@ -10,7 +14,7 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
         Menu menuDisplay = new Menu();
 
-        while (true)
+        while (true) // infinite return to menu until program exit
         {
             menuDisplay.displayMenu();
 
@@ -31,20 +35,20 @@ public class Main {
                 System.out.print("Enter student's ID: ");
                 String stuId = keyboard.nextLine();
 
-                if (menuDisplay.isListed(studentCollection, stuId))
+                if (menuDisplay.isListed(studentCollection, stuId)) // checks if ID is in our records
                 {
-                    System.out.println("Enter the information for the NEW course you are adding ");
+                    System.out.println("Enter the information for the NEW course you are adding "); // TODO: check if course is already in records
 
                     System.out.print("Course Name: ");
                     String coName = keyboard.nextLine();
                     System.out.print("Credits: ");
-                    int coCredits = keyboard.nextInt();
-                    keyboard.nextLine();
+                    double coCredits = keyboard.nextDouble();
+                    keyboard.nextLine(); // weird stuff happens if this isn't here??
                     System.out.print("Grade: ");
                     String coGrade = keyboard.nextLine();
                     System.out.println();
 
-                    for (StudentObj temp : studentCollection)
+                    for (StudentObj temp : studentCollection) // loops through record until matching ID is found
                     {
                         if (temp.getId().equals(stuId))
                         {
@@ -64,14 +68,14 @@ public class Main {
             {
                 System.out.print("Enter ID of student to be deleted: ");
                 String stuId = keyboard.nextLine();
-                if (menuDisplay.isListed(studentCollection, stuId))
+                if (menuDisplay.isListed(studentCollection, stuId)) // check if ID is in our records
                 {
                     int index = -1;
                     for (StudentObj temp : studentCollection)
                     {
-                        if (temp.getId().equals(stuId))
+                        if (temp.getId().equals(stuId)) // find student with matching ID
                         {
-                            index = studentCollection.indexOf(temp);
+                            index = studentCollection.indexOf(temp); // get index of student
                         }
                     }
 
@@ -89,18 +93,17 @@ public class Main {
             {
                 System.out.print("Enter student's ID: ");
                 String stuId = keyboard.nextLine();
-                if (menuDisplay.isListed(studentCollection, stuId))
+                if (menuDisplay.isListed(studentCollection, stuId)) // ID in record?
                 {
                     System.out.print("Enter name of course to be deleted: ");
                     String coName = keyboard.nextLine();
                     System.out.println();
 
-
-                    for (StudentObj temp : studentCollection)
+                    for (StudentObj temp : studentCollection) // find matching student
                     {
                         if (temp.getId().equals(stuId))
                         {
-                            temp.removeCourse(coName);
+                            temp.removeCourse(coName); // remove course
                         }
                     }
                 }
@@ -121,7 +124,7 @@ public class Main {
                     {
                         if (temp.getId().equals(stuId))
                         {
-                            temp.displayStudent();
+                            temp.displayStudent(); // Displays student name, id, courses, and cumulative GPA
                         }
                     }
                 }
@@ -134,7 +137,7 @@ public class Main {
 
             if (menuDisplay.getMenuChoice() == 6) // print summary
             {
-                System.out.println("Current number of recorded students: "+ studentCollection.size());
+                System.out.println("Current number of recorded students: "+ studentCollection.size()); // displays number of student objects in the student collection array
                 System.out.println("Student ID | Student Name");
                 for (StudentObj temp: studentCollection)
                 {
@@ -147,10 +150,6 @@ public class Main {
                 System.out.println("Exiting Program... Goodbye!");
                 System.exit(0);
             }
-
-
         }
-
-
     }
 }
