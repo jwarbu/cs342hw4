@@ -1,0 +1,71 @@
+names.printList();
+        names.addToHead("Decker");
+        names.addToHead("Barbour");
+        names.addToHead("Franklin");
+        names.printList();
+        names.addToTail("Smith");
+        names.addToTail("Whatley");
+        names.addToTail("Lewis");
+        System.out.println();
+        names.printList();
+
+        GDList.GNode temp;
+        // find and print Decker, search from head
+        System.out.println("\nFind and print Decker. Search from head.");
+        temp = names.findNode(names.head, "Decker");
+        System.out.println(temp != null ? temp.getData() : "The node does not exist.");
+
+        // find Whatley first and add Morse after Whatley
+        System.out.println("\nFind Whatley first and add Morse after Whatley");
+        temp = names.findNode(names.head, "Whatley");
+        if (temp == null)
+            System.out.println("Such node does not exist in the list");
+        else
+            names.addAfter(temp, "Morse");
+        System.out.println();
+        names.printList();
+
+// CUSTOM TESTING STARTS HERE
+
+        // find and print the pointer for Decker
+        System.out.println("\nFind and print the pointer for Decker. Search from head.");
+        temp = names.findNode(names.head, "Decker");
+        System.out.println(temp != null ? temp : "The node does not exist.");
+
+        // replace Decker (pos 2) with Jennifer
+        System.out.println("\nReplace the third name of the list with Jennifer");
+
+        System.out.println("\nBefore:");
+        names.printList();
+
+        names.replacePos("Wartick", 2);
+
+        System.out.println("\nAfter:");
+        names.printList();
+
+        // exchange Franklin with Whatley
+        System.out.println("\nExchange Franklin and Whatley");
+        names.exchange(names.findNode(names.head, "Franklin"), names.findNode(names.head, "Whatley"));
+        names.printList();
+
+        // delete Jennifer from list
+        System.out.println("\nDelete Wartick from list");
+        names.deleteNode("Wartick");
+        names.printList();
+
+        // add Persinger after Franklin (pos 3)
+        System.out.println("\nAdd Persinger after Franklin");
+        names.addPos("Persinger", 3);
+        names.printList();
+
+
+
+                        if (menuDisplay.isListed(studentCollection, stuId))
+                        {
+
+
+
+                else
+                {
+                    System.out.println("Sorry, we do not have a record fora student with that ID.");
+                }
